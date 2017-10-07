@@ -5,7 +5,6 @@ const Viewport = () => {
   return (
     <div id='react-soroban-viewport'>
       <Soroban />
-      <div>Score / Value will display here</div>
     </div>
   );
 };
