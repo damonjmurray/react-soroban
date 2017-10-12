@@ -5,7 +5,7 @@ import Bead from './bead';
 class Rod extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { rodValue: 0 };
+    this.state = { value: 0 };
     this.divStyle = { float: 'right', border: '1px solid #cbcbcb' };
     this.beamStyle = { height: '20px', width: '100%', backgroundColor: 'black' };
 
@@ -13,9 +13,9 @@ class Rod extends React.Component {
   }
 
   beadUpdatedHandler(beadValue) {
-    let rodValue = this.state.rodValue + (beadValue * this.props.placeValue);
-    this.setState({ rodValue });
-    this.props.onUpdate(rodValue);
+    const value = this.state.value + (beadValue * this.props.placeValue);
+    this.setState({ value });
+    this.props.onUpdate(this.props.rodId, value);
   };
 
   buildBead(beadValue) {

@@ -7,7 +7,7 @@ class Bead extends React.Component {
     this.state = { active: false };
 
     this.clickHandler = this.clickHandler.bind(this);
-  };
+  }
 
   getDivStyle() {
     const activeColor = '#80664d';
@@ -19,18 +19,17 @@ class Bead extends React.Component {
       backgroundColor: this.state.active ? activeColor : inactiveColor,
       border: '1px dashed #ffffff'
     }
-  };
+  }
 
   clickHandler() {
     const active = !this.state.active;
     this.setState({ active });
     this.props.onUpdate(active ? this.props.value : -this.props.value);
-  };
+  }
 
   render() {
     return (
-      <div style={ this.getDivStyle() } onClick={ this.clickHandler }>
-      </div>
+      <div style={ this.getDivStyle() } onClick={ this.clickHandler }></div>
     );
   }
 };
