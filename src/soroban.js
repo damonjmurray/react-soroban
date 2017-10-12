@@ -7,12 +7,20 @@ const Soroban = (props) => {
     border: '5px solid #000000'
   };
 
+  const rodUpdateHandler = (rodValue) => {
+    // TODO: appropriately handle soroban total value calculation
+    console.log(rodValue);
+  };
+
+  const buildRod = (key, placeValue) =>
+    <Rod key={ key } placeValue={ placeValue } onUpdate={ rodUpdateHandler } />;
+
   return (
     <div style={ divStyle }>
       { /* The standard Japanese Soroban has 13 rods */ }
       {
         [...Array(13).keys()].map((i) =>
-          <Rod key={ i } placeValue={ Math.pow(10, i) } />
+          buildRod(i, Math.pow(10, i))
         )
       }
     </div>

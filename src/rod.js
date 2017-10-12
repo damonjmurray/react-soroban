@@ -14,19 +14,26 @@ const Rod = (props) => {
     backgroundColor: 'black'
   };
 
+  const beadUpdatedHandler = (beadValue) => {
+    props.onUpdate(beadValue * props.placeValue);
+  };
+
+  const buildBead = (beadValue) =>
+    <Bead value={ beadValue } onUpdate={ beadUpdatedHandler } />;
+
   return (
     <div style={ divStyle }>
       { /* heaven bead */ }
-      <Bead value={ 5 } />
+      { buildBead(5) }
 
       { /* beam */ }
       <div style={ beamStyle }></div>
 
       { /* earth beads */ }
-      <Bead value={ 1 } />
-      <Bead value={ 1 } />
-      <Bead value={ 1 } />
-      <Bead value={ 1 } />
+      { buildBead(1) }
+      { buildBead(2) }
+      { buildBead(3) }
+      { buildBead(4) }
     </div>
   );
 };
