@@ -2,41 +2,44 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Bead from './bead';
 
-const Rod = (props) => {
-  const divStyle = {
-    float: 'right',
-    border: '1px solid #cbcbcb'
+class Rod extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { rodValue: 0 };
+    this.divStyle = { float: 'right', border: '1px solid #cbcbcb' };
+    this.beamStyle = { height: '20px', width: '100%', backgroundColor: 'black' };
+
+    this.beadUpdatedHandler = this.beadUpdatedHandler.bind(this);
+  }
+
+  beadUpdatedHandler(beadValue) {
+    let rodValue = this.state.rodValue + (beadValue * this.props.placeValue);
+    this.setState({ rodValue });
+    this.props.onUpdate(rodValue);
   };
 
-  const beamStyle = {
-    height: '20px',
-    width: '100%',
-    backgroundColor: 'black'
-  };
+  buildBead(beadValue) {
+    return <Bead value={ beadValue } onUpdate={ this.beadUpdatedHandler } />;
+  }
 
-  const beadUpdatedHandler = (beadValue) => {
-    props.onUpdate(beadValue * props.placeValue);
-  };
+  render() {
+    return (
+      <div style={ this.divStyle }>
+        { /* heaven bead */ }
+        { this.buildBead(5) }
 
-  const buildBead = (beadValue) =>
-    <Bead value={ beadValue } onUpdate={ beadUpdatedHandler } />;
+        { /* beam */ }
+        <div style={ this.beamStyle }></div>
 
-  return (
-    <div style={ divStyle }>
-      { /* heaven bead */ }
-      { buildBead(5) }
-
-      { /* beam */ }
-      <div style={ beamStyle }></div>
-
-      { /* earth beads */ }
-      { buildBead(1) }
-      { buildBead(2) }
-      { buildBead(3) }
-      { buildBead(4) }
-    </div>
-  );
-};
+        { /* earth beads */ }
+        { this.buildBead(1) }
+        { this.buildBead(1) }
+        { this.buildBead(1) }
+        { this.buildBead(1) }
+      </div>
+    );
+  }
+}
 
 Rod.propTypes = {
   placeValue: PropTypes.number.isRequired
