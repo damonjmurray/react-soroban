@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Viewport from './viewport';
+import Viewport from './components/viewport';
 
 const divId = 'react-soroban';
 const div = document.createElement('div');
