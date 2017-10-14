@@ -1,5 +1,5 @@
 import React from 'react';
-import Soroban from './soroban';
+import Soroban from '../containers/soroban';
 
 const Viewport = () => {
   return (
