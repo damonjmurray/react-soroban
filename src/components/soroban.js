@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Rod from './rod';
+import Rod from '../containers/rod';
 
 const Soroban = (props) => {
   const frameStyle = { display: 'inline-block', border: '5px solid #000000', float: 'left' };

@@ -1,41 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-class Bead extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { active: false };
-
-    this.clickHandler = this.clickHandler.bind(this);
-  }
-
-  getDivStyle() {
+const Bead = (props) => {
+  const getDivStyle = () => {
     const activeColor = '#80664d';
     const inactiveColor = '#cc6600';
 
     return {
       height: '50px',
       width: '70px',
-      backgroundColor: this.state.active ? activeColor : inactiveColor,
+      backgroundColor: props.active ? activeColor : inactiveColor,
       border: '1px dashed #ffffff'
     }
   }
 
-  clickHandler() {
-    const active = !this.state.active;
-    this.setState({ active });
-    this.props.onUpdate(active ? this.props.value : -this.props.value);
+  const clickHandler = () => {
+    !props.active ? props.activate() : props.deactivate();
   }
 
-  render() {
-    return (
-      <div style={ this.getDivStyle() } onClick={ this.clickHandler }></div>
-    );
-  }
-};
-
-Bead.propTypes = {
-  value: PropTypes.number.isRequired
+  return (
+    <div style={ getDivStyle() } onClick={ clickHandler }></div>
+  );
 };
 
 export default Bead;

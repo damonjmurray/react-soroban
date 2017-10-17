@@ -1,7 +1,4 @@
-const actionTypes = {
-  ROD_UPDATED: 'ROD_UPDATED',
-  RESET: 'RESET'
-}
+import actionTypes from './actionTypes';
 
 const rodUpdated = (rod) => {
   return { type: actionTypes.ROD_UPDATED, rod };
@@ -12,7 +9,6 @@ const reset = () => {
 }
 
 export {
-  actionTypes,
   rodUpdated,
   reset
 };
