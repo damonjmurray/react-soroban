@@ -14,9 +14,7 @@ const Bead = (props) => {
     }
   }
 
-  const clickHandler = () => {
-    !props.active ? props.activate() : props.deactivate();
-  }
+  const clickHandler = () => props.toggleBead();
 
   return (
     <div style={ getDivStyle() } onClick={ clickHandler }></div>

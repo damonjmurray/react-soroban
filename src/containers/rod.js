@@ -8,7 +8,7 @@ const mapStateToProps = (state, { rodIndex }) => {
   return Object.assign(
     {},
     getCurrentRod(state, rodIndex),
-    { beads: getCurrentBeads(state, rodIndex) }
+    { beads: getCurrentBeads(state.soroban.beads, rodIndex) }
   );
 };
 

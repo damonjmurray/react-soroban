@@ -13,44 +13,28 @@ const DEFAULT_BEADS = [...Array(13).keys()].map((rodIndex) =>
   BEAD_SET.map((bead) => Object.assign({}, bead, { rodIndex }))
 ).reduce((a, b) => a.concat(b));
 
-const activateBead = (beads, { rodIndex, beadIndex }) => {
-  const bead = getCurrentBead(beads, rodIndex, beadIndex);
-  const idx = beads.indexOf(bead);
-  return beads.slice(0, idx)
-    .concat([Object.assign({}, bead, { active: true })])
-    .concat(beads.slice(idx+1, beads.length+1));
+const toggleBead = (state, bead) => {
+  const beadIndex = state.indexOf(bead);
+  return state.slice(0, beadIndex)
+    .concat([Object.assign({}, bead, { active: !bead.active })])
+    .concat(state.slice(beadIndex+1, state.length))
 }
 
-const deactivateBead = (beads, { rodIndex, beadIndex }) => {
-  const bead = getCurrentBead(beads, rodIndex, beadIndex);
-  const idx = beads.indexOf(bead);
-  return beads.slice(0, idx)
-    .concat([Object.assign({}, bead, { active: false })])
-    .concat(beads.slice(idx+1, beads.length+1));
-}
-
-const beads = (state = DEFAULT_BEADS, action) => {
-  // TODO: update state per action
+// reducer
+export default (state = DEFAULT_BEADS, action) => {
   switch (action.type) {
-    case actionTypes.BEAD_ACTIVATED:
-      return activateBead(state, action.bead);
-    case actionTypes.BEAD_DEACTIVATED:
-      return deactivateBead(state, action.bead);
+    case actionTypes.BEAD_TOGGLED:
+      return toggleBead(state, action.bead);
     default:
       return state;
   }
-  //if (action.type !== 'UPDATE BEAD') { return state; }
-  //return state.map(bead => (bead.value == action.bead.value) ? action.bead : bead);
-  return state;
 }
 
-export default beads;
-
 // selectors
-export const getCurrentBead = (beadState, rodIndex, beadIndex) => {
-  return beadState.find((bead) => bead.rodIndex == rodIndex && bead.beadIndex == beadIndex);
+export const getCurrentBead = (state, rodIndex, beadIndex) => {
+  return state.find((bead) => bead.rodIndex == rodIndex && bead.beadIndex == beadIndex);
 }
 
 export const getCurrentBeads = (state, rodIndex) => {
-  return state.soroban.beads.filter((bead) => bead.rodIndex == rodIndex);
+  return state.filter((bead) => bead.rodIndex == rodIndex);
 }

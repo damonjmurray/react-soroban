@@ -8,15 +8,14 @@ const mapStateToProps = (state, { beadIndex, rodIndex }) => {
   return getCurrentBead(state.soroban.beads, rodIndex, beadIndex);
 };
 
-const mapDispatchToProps = (dispatch, { beadIndex, rodIndex }) => {
+const mapDispatchToProps = (dispatch) => {
   return bindActionCreators(BeadActions, dispatch);
 };
 
-const mergeProps = ({ active, beadIndex, rodIndex }, { beadActivated, beadDeactivated }) => {
+const mergeProps = (currentBead, { beadToggled }) => {
   return {
-    active,
-    activate: () => beadActivated({ rodIndex, beadIndex }),
-    deactivate: () => beadDeactivated({ rodIndex, beadIndex })
+    active: currentBead.active,
+    toggleBead: () => beadToggled(currentBead)
   };
 };
 
