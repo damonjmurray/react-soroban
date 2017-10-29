@@ -13,10 +13,6 @@ const Soroban = (props) => {
     marginTop: '55px'
   };
 
-  const updateRod = () => {
-    props.rodUpdated();
-  };
-
   const renderRods = () => {
     return props.rods.map((rod, i) =>
       <Rod key={ i } rodIndex = { i } placeValue={ rod.placeValue } onUpdate={ props.rodUpdated } />
@@ -29,7 +25,7 @@ const Soroban = (props) => {
         { renderRods() }
       </div>
 
-      <div style={ resetButtonStyle } onClick={ props.reset }></div>
+      <div style={ resetButtonStyle } onClick={ props.resetBeads }></div>
     </div>
   );
 }

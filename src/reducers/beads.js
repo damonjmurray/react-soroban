@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import actionTypes from '../actions/actionTypes';
 
-const BEAD_SET = [
+const DEFAULT_BEAD_SET = [
   { beadIndex: 0, value: 5, active: false },
   { beadIndex: 1, value: 1, active: false },
   { beadIndex: 2, value: 2, active: false },
@@ -9,8 +9,8 @@ const BEAD_SET = [
   { beadIndex: 4, value: 4, active: false }
 ];
 
-const DEFAULT_BEADS = [...Array(13).keys()].map((rodIndex) =>
-  BEAD_SET.map((bead) => Object.assign({}, bead, { rodIndex }))
+export const DEFAULT_BEADS = [...Array(13).keys()].map((rodIndex) =>
+  DEFAULT_BEAD_SET.map((bead) => Object.assign({}, bead, { rodIndex }))
 ).reduce((a, b) => a.concat(b));
 
 const isHeavenBead = (bead) => bead.value === 5;
@@ -75,6 +75,8 @@ export default (state = DEFAULT_BEADS, action) => {
   switch (action.type) {
     case actionTypes.BEAD_TOGGLED:
       return action.bead.active ? cascadeDeactivate(state, action.bead) : cascadeActivate(state, action.bead);
+    case actionTypes.RESET_BEADS:
+      return DEFAULT_BEADS;
     default:
       return state;
   }

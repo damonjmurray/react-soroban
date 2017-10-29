@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Bead from '../components/bead';
-import BeadActions from '../actions/bead';
+import { beadToggled } from '../actions/bead';
 import { getCurrentBead } from '../reducers/beads';
 
 const mapStateToProps = (state, { beadIndex, rodIndex }) => {
@@ -9,7 +9,7 @@ const mapStateToProps = (state, { beadIndex, rodIndex }) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators(BeadActions, dispatch);
+  return bindActionCreators({ beadToggled }, dispatch);
 };
 
 const mergeProps = (currentBead, { beadToggled }) => {

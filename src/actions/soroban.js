@@ -1,14 +1,7 @@
 import actionTypes from './actionTypes';
 
-const rodUpdated = (rod) => {
-  return { type: actionTypes.ROD_UPDATED, rod };
-}
+const resetBeads = () => (
+  { type: actionTypes.RESET_BEADS }
+);
 
-const reset = () => {
-  return { type: actionTypes.RESET };
-}
-
-export {
-  rodUpdated,
-  reset
-};
+export { resetBeads };

@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 
-const DEFAULT_RODS = [...Array(13).keys()].map((i) => (
+export const DEFAULT_RODS = [...Array(13).keys()].map((i) => (
   { rodIndex: i, placeValue: Math.pow(10, i), total: 0 }
 ));
 

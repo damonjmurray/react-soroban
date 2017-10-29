@@ -1,7 +1,7 @@
 import actionTypes from './actionTypes';
 
-const beadToggled = (bead) => {
-  return { type: actionTypes.BEAD_TOGGLED, bead };
-}
+const beadToggled = (bead) => (
+  { type: actionTypes.BEAD_TOGGLED, bead }
+)
 
-export default { beadToggled };
+export { beadToggled };
