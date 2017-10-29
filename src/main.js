@@ -1,15 +1,26 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import Viewport from './viewport';
+import { render } from 'react-dom';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import reducers from './reducers';
+import Viewport from './components/viewport';
 
-const divId = 'react-soroban';
-const div = document.createElement('div');
-div.id = divId;
+// create div to contain app
+const domNode = document.createElement('div');
+domNode.id = 'react-soroban';
+document.body.appendChild(domNode);
 
-document.body.appendChild(div);
-document.addEventListener('DOMContentLoaded', function() {
-  ReactDOM.render(
-    React.createElement(Viewport),
-    document.getElementById(divId)
+// create state tree and render components on DOMContentLoaded
+document.addEventListener('DOMContentLoaded', () => {
+  const store = createStore(
+      reducers,
+      window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  );
+
+  render(
+    <Provider store={ store }>
+      <Viewport />
+    </Provider>,
+    domNode
   );
 });
